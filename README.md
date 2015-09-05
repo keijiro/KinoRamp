@@ -5,6 +5,12 @@ KinoRamp is a color gradient overlay image effect for Unity.
 
 ![image](https://40.media.tumblr.com/3ff96a2f7974edf4344b7b51f167e420/tumblr_nu7k5q1DVp1qio469o1_400.png)
 
+It generates a simple color gradient and blends it to the destination buffer.
+It supports several blend modes (multiply, screen, overlay, hardlight and
+softlight) and automatic color-space conversion -- it converts colors into
+sRGB before blending to get a proper result that is equivalent to the common
+photo-editing software like Photoshop.
+
 System Requirements
 -------------------
 
