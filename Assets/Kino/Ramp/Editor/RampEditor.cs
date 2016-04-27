@@ -31,6 +31,7 @@ namespace Kino
     {
         SerializedProperty _color1;
         SerializedProperty _color2;
+        SerializedProperty _ratio;
         SerializedProperty _angle;
         SerializedProperty _opacity;
         SerializedProperty _blendMode;
@@ -42,6 +43,7 @@ namespace Kino
         {
             _color1 = serializedObject.FindProperty("_color1");
             _color2 = serializedObject.FindProperty("_color2");
+            _ratio = serializedObject.FindProperty("_ratio");
             _angle = serializedObject.FindProperty("_angle");
             _opacity = serializedObject.FindProperty("_opacity");
             _blendMode = serializedObject.FindProperty("_blendMode");
@@ -54,6 +56,7 @@ namespace Kino
 
             EditorGUILayout.PropertyField(_color1);
             EditorGUILayout.PropertyField(_color2);
+            EditorGUILayout.PropertyField(_ratio);
             EditorGUILayout.PropertyField(_angle);
             EditorGUILayout.PropertyField(_opacity);
             EditorGUILayout.PropertyField(_blendMode);

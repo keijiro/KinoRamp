@@ -51,6 +51,16 @@ namespace Kino
             set { _color2 = value; }
         }
 
+        // ramp ratio
+
+        [SerializeField, Range(0f, 1f)]
+        float _ratio = 0.5f;
+
+        public float ratio {
+            get { return _ratio; }
+            set { _ratio = value; }
+        }
+
         // ramp angle
 
         [SerializeField, Range(-180, 180)]
@@ -125,6 +135,8 @@ namespace Kino
             var blend = _debug ? 1.0f : _opacity;
             _material.SetColor("_Color1", Color.Lerp(c0, _color1, blend));
             _material.SetColor("_Color2", Color.Lerp(c0, _color2, blend));
+
+            _material.SetFloat("_Ratio", _ratio);
 
             // ramp direction vector
             var phi = Mathf.Deg2Rad * _angle;
