@@ -27,6 +27,7 @@ Shader "Hidden/Kino/Ramp"
         _MainTex ("-", 2D) = "black" {}
         _Color1 ("-", Color) = (0, 0, 1, 0)
         _Color2 ("-", Color) = (1, 0, 0, 0)
+        _Ratio ("-", Float) = 0.5
         _Direction ("-", Vector) = (0, 1, 0, 0)
     }
 
@@ -41,6 +42,7 @@ Shader "Hidden/Kino/Ramp"
     sampler2D _MainTex;
     half4 _Color1;
     half4 _Color2;
+    float _Ratio;
     float2 _Direction;
 
     #if _LINEAR
@@ -74,8 +76,11 @@ Shader "Hidden/Kino/Ramp"
         grad2 = linear_to_srgb(grad2);
         #endif
 
-        float param = dot(i.uv - 0.5, _Direction);
-        half3 c_b = lerp(grad1, grad2, param + 0.5);
+        float param = dot(i.uv - 0.5, _Direction) + 0.5;
+        float r_a = _Ratio;
+        float r_b = 1.0 - _Ratio;
+        param = saturate(param / r_a) * 0.5 + saturate((param - r_a) / r_b) * 0.5;
+        half3 c_b = lerp(grad1, grad2, param);
 
         #if _DEBUG
         half3 c_f = c_b;
